@@ -28,10 +28,13 @@ fetch_data() {
         cat ${resp} | jq -r ".$var2"
         read -p "Want to extract single metadata? Y/N" var3
         if [[ $var1 == "Y" || $var1 == "y" ]] ; then
-          echo "Availabe le options"
+          echo "Available options"
           for typ in $(cat $rec) ; do
             help $typ
           done
+          read -p "Enter the key1 now: " key1
+          read -p "Enter the key2 now: " key2
+          cat ${resp} |jq -r ".${key1}.${key2}"
         fi
       fi
     fi
